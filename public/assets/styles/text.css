@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'DRAguSans';
+  src: url(./font/DRAguSans-Black.ttf) format('truetype');
+}
+
+.visibleDomText {
+  font-family: 'DRAguSans';
+  font-size: 52px;
+  color: #f45b4e;
+  user-select: none;
+  text-transform: uppercase;
+}
+
+.invisibleDomText {
+  opacity: 0;
+}
