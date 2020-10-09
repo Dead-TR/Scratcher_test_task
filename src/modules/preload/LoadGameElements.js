@@ -33,7 +33,7 @@ export const LoadGameElements = (game) => {
   game.load.image('frame3', 'assets/img/magic_forest_frame3.png');
   game.load.image('brush', 'assets/img/brush.png');
 
-  game.load.image('scratch', 'assets/img/magic_forest_scratch_frame.png');
+  game.load.image('card_scratch', 'assets/img/magic_forest_scratch_frame.png');
   game.load.image('bonus_scratch', 'assets/img/magic_forest_scratch_frame_big.png');
 
   game.load.image('shadow_40_percent', 'assets/img/magic_forest_shadow_40_percent.png');

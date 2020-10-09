@@ -1,5 +1,6 @@
 import cardArrowCreator from '../additional/cardArrowCreator';
 import config from '../../config';
+import {Scratch, coordinator, scratchField} from './Scratch'
 
 export const CreateInteractive = (game) => {
   const condition = Phaser.Math.Between(0, 4);
@@ -68,24 +69,7 @@ export const CreateInteractive = (game) => {
       break;
   };
 
-  const coordinator = {}
-
-  const brush = game.add.image(0, 0, 'coin_icon_big');
-  const scratchField = game.add.renderTexture(
-    0,
-    0,
-    config.scale.width,
-    config.scale.height
-  ).setDepth(50);
-  scratchField.destroy = 0;
-  scratchField.draw('bonus_scratch', 615, 415);
-
-  coordinator.bonusCard = {
-    diagonal: 520,
-    segment: 368,
-    initialX: 615,
-    initialY: 415,
-  }
+  Scratch(game);
 
   const cardCells = game.add.group({
     key: 'frame',
@@ -102,8 +86,9 @@ export const CreateInteractive = (game) => {
       cell.x += (337 * (i-3));
     }
 
-    scratchField.draw('scratch', cell.x, cell.y);
+    scratchField.draw('card_scratch', cell.x, cell.y);
     coordinator[`card_${i}`] = {
+      type: 'card',
       diagonal: 390,
       segment: 368,
       initialX: cell.x,
@@ -127,56 +112,4 @@ export const CreateInteractive = (game) => {
       unit.x += (337 * (i-3));
     }
   });
-
-  game.input.on('pointermove', function (pointer) {
-    if (pointer.isDown){
-      scratchField.erase(brush, pointer.x, pointer.y);
-      coordinatorAudit(pointer, coordinator, cardCells);
-    }
-  });
-
-  game.input.on('pointerdown', function (pointer) {
-    scratchField.erase(brush, pointer.x, pointer.y);
-  });
 }
-
-function coordinatorAudit(pointer, coordinator, cardCells) {
-  for (const card in coordinator) {
-    // coordinator[card]
-    if (
-      pointer.x > coordinator[card].initialX
-        && pointer.x < (coordinator[card].initialX + coordinator[card].segment)
-      && pointer.y > coordinator[card].initialY
-        && pointer.y < (coordinator[card].initialY + coordinator[card].segment)
-    ) {
-      if (coordinator[card].minX > pointer.x || !coordinator[card].minX) {
-        coordinator[card].minX = Math.floor(pointer.x)
-      }
-      if (coordinator[card].minY > pointer.y || !coordinator[card].minY) {
-        coordinator[card].minY = Math.floor(pointer.y)
-      }
-
-      if (coordinator[card].maxX < pointer.x || !coordinator[card].maxX) {
-        coordinator[card].maxX = Math.floor(pointer.x)
-      }
-      if (coordinator[card].maxY < pointer.y || !coordinator[card].maxY) {
-        coordinator[card].maxY = Math.floor(pointer.y)
-      }
-
-      const verticalSide = coordinator[card].maxY - coordinator[card].minY;
-      const horizontalSide = coordinator[card].maxX - coordinator[card].minX;
-      const diagonal = Math.sqrt(Math.pow(verticalSide, 2) + Math.pow(horizontalSide, 2))
-      if (diagonal > coordinator[card].diagonal * 0.9) {
-        console.log("coordinatorAudit -> diagonal", diagonal)
-      }
-    }
-  }
-}
-
-/*
-
-      console.log("CreateInteractive -> scratchField", scratchField)
-      console.log("======>", scratchField.texture.pixels)
-
-
-*/
