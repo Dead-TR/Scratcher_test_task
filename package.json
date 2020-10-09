@@ -1,5 +1,6 @@
 {
   "name": "phaser-webpack",
+  "homepage": ".",
   "version": "1.0.0",
   "description": "Simple boilerplate project that combines [Phaser](http://phaser.io) with [Webpack](http://webpack.github.io).",
   "dependencies": {

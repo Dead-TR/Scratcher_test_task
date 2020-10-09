@@ -13,12 +13,6 @@ const config = {
     createContainer: true
   },
   scene: GameScene,
-  physics: {
-    default: 'arcade',
-    arcade: {
-      // debug: true,
-    }
-  }
 };
 
 export default config;
