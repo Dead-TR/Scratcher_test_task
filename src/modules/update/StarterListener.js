@@ -28,10 +28,7 @@ export const StarterListener = (game) => {
         element.setAlpha(0);
       }
     }
-
-    if (shadow.y > -shadow.height) {
-      shadow.y -= 50;
-    }
+    shadow.setAlpha(0);
 
     for (const unit in coordinator) {
       coordinator[unit].scratched && counter++;
@@ -58,10 +55,6 @@ export const StarterListener = (game) => {
         element.setAlpha(1);
       }
     }
-
-    if (shadow.y != 0) {
-      shadow.y += 50;
-    }
+    shadow.setAlpha(1);
   }
-
 }

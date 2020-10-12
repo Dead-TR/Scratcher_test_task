@@ -36,25 +36,30 @@ export const Starter = (game) => {
     .setOrigin(0, 1)
     .setDepth(2);
 
-  const question_text = game.add.dom(
+  const questionText = game.add.text(
     400,
-    config.scale.height - 390,
-    'h1',
-    null,
-    'How To Play'
+    playFrame.y - 460,
+    'How To Play',
+    {
+      fontSize: '72px',
+      color: '#ff8729',
+      fontFamily: 'DRAguSans',
+    },
   )
-    .setClassName('questionDomText')
-    .setOrigin(0);
+    .setDepth(2);
 
-  const playText = game.add.dom(
-    config.scale.width / 2 - 35,
-    config.scale.height - 125,
-    'h1',
-    null,
-    'Play For 60'
+  const playText = game.add.text(
+    config.scale.width / 2 - 50,
+    playBtn.y - 90,
+    'Play For 60',
+    {
+      fontSize: '72px',
+      color: '#fff',
+      fontFamily: 'DRAguSans',
+    },
   )
-    .setClassName('playText')
-    .setOrigin(0.5, 1);
+    .setOrigin(0.5, 1)
+    .setDepth(2);
 
   const coin = game.add.image(
     config.scale.width / 2 + 185,
@@ -72,32 +77,39 @@ export const Starter = (game) => {
     .setOrigin(0.5, 0)
     .setDepth(2);
 
-  const winText = game.add.dom(
+  const winText = game.add.text(
     config.scale.width / 2,
-    175,
-    'h1',
-    null,
-    'You win'
+    winWindow.y + 40,
+    'You win',
+    {
+      fontSize: '116px',
+      fontFamily: 'DRAguSans',
+      color: '#f45b4e',
+    },
   )
-    .setClassName('winText')
-    .setOrigin(0.5, 0);
+  .setDepth(2)
+  .setOrigin(0.5, 0);
+  winText.setText(winText.text.toUpperCase());
 
-  const winNum = game.add.dom(
-    config.scale.width / 2 - 70,
-    300,
-    'h1',
-    null,
-    '10'
+  const winNum = game.add.text(
+    config.scale.width / 2 - 50,
+    winWindow.y + 220,
+    '0',
+    {
+      fontSize: '126px',
+      fontFamily: 'DRAguSans',
+      color: '#000',
+    },
   )
-    .setClassName('winNum')
-    .setOrigin(0.5, 0);
+  .setDepth(2)
+  .setOrigin(0.5);
 
   const winCoin = game.add.image(
-    config.scale.width / 2 + 70,
-    425,
+    winNum.x + (winNum.width * 2) + 20,
+    winNum.y,
     'coin_icon_big',
   )
-    .setOrigin(0.5, 0)
+    .setOrigin(0.5)
     .setDepth(2);
 
   playBtn.on('pointerup', function (event) {
@@ -114,7 +126,7 @@ export const Starter = (game) => {
     playFrame,
     playBtn,
     question_ico,
-    question_text,
+    questionText,
     playText,
     coin
   ];

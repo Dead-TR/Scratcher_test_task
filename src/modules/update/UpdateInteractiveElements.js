@@ -9,14 +9,15 @@ import {Scratch, coordinator, scratchField} from '../create/Scratch';
 import {winElements} from '../create/Starter';
 
 export let coins = 0;
+console.log("coins 0", coins)
 
 export const UpdateInteractiveElements = (game) => {
   let cardsResult;
   const condition = Phaser.Math.Between(0, 4);
   const probability = Phaser.Math.Between(0, 99);
-  const bonusProbability = Phaser.Math.Between(0, 9); //не реалізована фіча, об'єму бонусу
+  const bonusProbability = Phaser.Math.Between(0, 9);
 
-  if (bonusProbability < 7) {
+  if (bonusProbability <= 7) {
     coins += 25;
   }
 
@@ -46,7 +47,7 @@ export const UpdateInteractiveElements = (game) => {
       bonus.setTexture('tent');
   };
 
-  switch (true) { // probability
+  switch (true) {
     case(probability < 2):
       cardsResult = cardArrowCreator('tent');
       if (condition === 4) {

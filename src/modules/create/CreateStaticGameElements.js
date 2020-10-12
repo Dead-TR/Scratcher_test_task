@@ -14,19 +14,27 @@ export const CreateStaticGameElements = (game) => {
   const frameText = game.add.image(45, 1040, 'frame_for_text')
     .setOrigin(0);
 
-  const domTextLeft = game.add.dom(70, 1025, 'h1', null, 'match the winner')
-    .setClassName('visibleDomText')
-    // .setVisible(false)
-    .setOrigin(0);
-  const domTextRight = game.add.dom(
-    640,
-    1025,
-    'h1',
-    null,
-    'and win a prize!'
-  )
-  .setClassName('visibleDomText')
-  // .setVisible(false)
-  .setOrigin(0);
+  const staticTextStyle = {
+    fontFamily: 'DRAguSans',
+    fontSize: '52px',
+    color: '#f45b4e',
+    textTransform: 'uppercase',
+  }
 
+  const textLeft = game.add.text(
+    70,
+    1065,
+    'match the winner',
+    staticTextStyle,
+  );
+
+  const textRight = game.add.text(
+    640,
+    textLeft.y,
+    'and win a prize!',
+    staticTextStyle,
+  );
+
+  textLeft.setText(textLeft.text.toUpperCase());
+  textRight.setText(textRight.text.toUpperCase());
 }
