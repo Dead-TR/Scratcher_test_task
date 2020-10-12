@@ -3,6 +3,7 @@
   src: url(./font/DRAguSans-Black.ttf) format('truetype');
 }
 
+.winText,
 .visibleDomText {
   font-family: 'DRAguSans';
   font-size: 52px;
@@ -13,4 +14,33 @@
 
 .invisibleDomText {
   opacity: 0;
+}
+
+.questionDomText {
+  font-size: 72px;
+  color: #ff8729;
+  user-select: none;
+  font-family: 'DRAguSans';
+}
+
+.playText {
+  font-size: 72px;
+  color: #fff;
+  user-select: none;
+  cursor: pointer;
+  font-family: 'DRAguSans';
+  position: relative;
+}
+
+.winText {
+  font-size: 116px;
+}
+
+.winNum {
+  font-size: 126px;
+  color: #000;
+  user-select: none;
+  cursor: pointer;
+  font-family: 'DRAguSans';
+  position: relative;
 }

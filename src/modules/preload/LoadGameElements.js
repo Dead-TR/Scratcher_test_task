@@ -36,7 +36,7 @@ export const LoadGameElements = (game) => {
   game.load.image('card_scratch', 'assets/img/magic_forest_scratch_frame.png');
   game.load.image('bonus_scratch', 'assets/img/magic_forest_scratch_frame_big.png');
 
-  game.load.image('shadow_40_percent', 'assets/img/magic_forest_shadow_40_percent.png');
+  game.load.image('shadow', 'assets/img/magic_forest_shadow_40_percent.png');
 
   game.load.image('win_up_to_100', 'assets/img/magic_forest_win_up_to_100.png');
   game.load.image('winner', 'assets/img/magic_forest_winner.png');

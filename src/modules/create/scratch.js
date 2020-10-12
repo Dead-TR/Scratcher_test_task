@@ -1,21 +1,24 @@
 import config from '../../config';
+import {restart} from './Starter';
 
 export const coordinator = {}
 export let scratchField;
 
 export const Scratch = (game) => {
-  const brush = game.add.image(0, 0, 'coin_icon_big');
-
+  const brush = game.add.image(-100, -100, 'coin_icon_big');
   scratchField = game.add.renderTexture(
     0,
     0,
     config.scale.width,
     config.scale.height
-  ).setDepth(50);
+  )
+    .setDepth(1);
+
   scratchField.destroy = 0;
   scratchField.draw('bonus_scratch', 615, 415);
 
   coordinator.bonusCard = {
+    scratched: false,
     type: 'bonus',
     diagonal: 520,
     segment: 368,
@@ -23,16 +26,21 @@ export const Scratch = (game) => {
     initialY: 415,
   }
 
-  game.input.on('pointermove', function (pointer) {
-    if (pointer.isDown){
-      scratchField.erase(brush, pointer.x, pointer.y);
-      coordinatorAudit(pointer, coordinator, scratchField, game);
-    }
-  });
+    game.input.on('pointermove', function (pointer) {
+      if (pointer.isDown){
+        if (!restart) {
+          scratchField.erase(brush, pointer.x, pointer.y);
+          coordinatorAudit(pointer, coordinator, scratchField, game);
+        }
+      }
+    });
 
-  game.input.on('pointerdown', function (pointer) {
-    scratchField.erase(brush, pointer.x, pointer.y);
-  });
+    game.input.on('pointerdown', function (pointer) {
+      if (!restart) {
+        scratchField.erase(brush, pointer.x, pointer.y);
+      }
+    });
+
 }
 
 function coordinatorAudit(pointer, coordinator, scratchField, game) {
@@ -69,6 +77,7 @@ function coordinatorAudit(pointer, coordinator, scratchField, game) {
           ).setOrigin(0),
           coordinator[card].initialX,
           coordinator[card].initialY,
+          coordinator[card].scratched = true,
         );
       }
     }
