@@ -636,8 +636,7 @@
     }
   ],
   "skins": {
-		"name": "default",
-    "attachments": {
+    "default": {
       "_preview_red": {
         "_preview_red": {
           "x": 514,
