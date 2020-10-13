@@ -3,7 +3,6 @@ import config from '../../config';
 export const LoadCharacter = (game) => {
   game.load.setPath('assets/img/char_spine_v5/');
   game.load.spine('red', 'Red.json', 'Red.atlas');
-  game.load.image('loader', 'loader.png');
 
   let loader;
   game.load.on('start', () => {
