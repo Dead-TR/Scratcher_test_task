@@ -33,21 +33,20 @@ export const Scratch = (game) => {
     initialY: 415,
   }
 
-    game.input.on('pointermove', function (pointer) {
-      // if (pointer.isDown){ // if, only when mousedown
-        if (!restart) {
-          scratchField.erase(brush, pointer.x, pointer.y);
-          coordinatorAudit(pointer, coordinator, scratchField, game, bigBrush, mediumBrush);
-        }
-      // }
-    });
-
-    game.input.on('pointerdown', function (pointer) {
+  game.input.on('pointermove', (pointer) => {
+    // if (pointer.isDown){ // if, only when mousedown
       if (!restart) {
         scratchField.erase(brush, pointer.x, pointer.y);
+        coordinatorAudit(pointer, coordinator, scratchField, game, bigBrush, mediumBrush);
       }
-    });
+    // }
+  });
 
+  game.input.on('pointerdown', (pointer) => {
+    if (!restart) {
+      scratchField.erase(brush, pointer.x, pointer.y);
+    }
+  });
 }
 
 function coordinatorAudit(pointer, coordinator, scratchField, game, bigBrush, mediumBrush) {

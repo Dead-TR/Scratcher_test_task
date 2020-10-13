@@ -1,4 +1,4 @@
-import Phaser, { Scene } from 'phaser';
+import { Scene } from 'phaser';
 import {LoadGameElements} from './modules/preload/LoadGameElements';
 import {LoadCharacter} from './modules/preload/LoadCharacter';
 import {CreateStaticGameElements} from './modules/create/CreateStaticGameElements';
@@ -13,8 +13,8 @@ let startInteractive = true;
 export class GameScene extends Scene {
 
   preload (){
-    LoadGameElements(this);
     LoadCharacter(this);
+    LoadGameElements(this);
   }
 
   create (){

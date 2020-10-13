@@ -13,7 +13,6 @@ const cardArrowCreator = (unit) => {
   for (let i = 0; i < 6; i++) {
     if (i < 3 && unit !== 'lose') {
       result.push(unit);
-
     }
     else {
       const randomCard = items[Math.floor(Math.random()*items.length)];
@@ -34,10 +33,10 @@ export default cardArrowCreator;
 
 function arrayRandomizer(array) {
   for (var i = array.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
   }
 
   return array

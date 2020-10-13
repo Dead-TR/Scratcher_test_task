@@ -7,16 +7,15 @@ export const CreateInteractiveGameElements = (game) => {
   .setOrigin(0.5);
   cardRequired = game.add.image(0, 0, 'bow_small')
     .setOrigin(0.5)
-    // .setVisible(false)
     .setPosition(570, 1090);
 
-  cardCells = game.add.group({ //створює клітинки, в котрі буде поміщено елементи
+  cardCells = game.add.group({
     key: 'frame',
     repeat: 5,
     setXY: {x: 75, y: 1225}
   });
 
-  cardCells.children.iterate((cell, i) => { //розміщує ці клітинки
+  cardCells.children.iterate((cell, i) => {
     cell.setOrigin(0);
     if (i < 3) {
       cell.x += (337 * (i));
