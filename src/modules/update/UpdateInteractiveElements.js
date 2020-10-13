@@ -9,10 +9,9 @@ import {Scratch, coordinator, scratchField} from '../create/Scratch';
 import {winElements} from '../create/Starter';
 
 export let coins = 0;
-console.log("coins 0", coins)
 
 export const UpdateInteractiveElements = (game) => {
-  let cardsResult;
+  let cardsArray;
   const condition = Phaser.Math.Between(0, 4);
   const probability = Phaser.Math.Between(0, 99);
   const bonusProbability = Phaser.Math.Between(0, 9);
@@ -49,42 +48,42 @@ export const UpdateInteractiveElements = (game) => {
 
   switch (true) {
     case(probability < 2):
-      cardsResult = cardArrowCreator('tent');
+      cardsArray = cardArrowCreator('tent');
       if (condition === 4) {
         coins += 100;
       }
       break;
 
     case(probability >= 2 && probability < 6):
-      cardsResult = cardArrowCreator('rope');
+      cardsArray = cardArrowCreator('rope');
       if (condition === 3) {
         coins += 50;
       }
       break;
 
     case(probability >= 6 && probability < 12):
-      cardsResult = cardArrowCreator('leaf');
+      cardsArray = cardArrowCreator('leaf');
       if (condition === 2) {
         coins += 35;
       }
       break;
 
     case(probability >= 12 && probability < 20):
-      cardsResult = cardArrowCreator('bow');
+      cardsArray = cardArrowCreator('bow');
       if (condition === 1) {
         coins += 30;
       }
       break;
 
     case(probability >= 20 && probability < 30):
-      cardsResult = cardArrowCreator('bonfire');
+      cardsArray = cardArrowCreator('bonfire');
       if (condition === 0) {
         coins += 25;
       }
       break;
 
     default:
-      cardsResult = cardArrowCreator('lose');
+      cardsArray = cardArrowCreator('lose');
       break;
   };
 
@@ -103,7 +102,8 @@ export const UpdateInteractiveElements = (game) => {
   });
 
   cardUnits.children.iterate((unit, i) => {
-    unit.setTexture(cardsResult[i]);
+    unit.setTexture(cardsArray[i]);
+    coordinator[`card_${i}`].key = unit.texture.key;
   });
 
   if (bonusProbability > 7) {
@@ -120,5 +120,6 @@ export const UpdateInteractiveElements = (game) => {
     }
   }
 
+  coordinator.bonusCard.key = bonus.texture.key;
   coins = 0;
 }

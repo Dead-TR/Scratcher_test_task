@@ -1,6 +1,7 @@
 import PIXI from 'expose-loader?PIXI!phaser-ce/build/custom/pixi.js';
 import p2 from 'expose-loader?p2!phaser-ce/build/custom/p2.js';
-import Phaser from 'phaser';
+import Phaser from './plugins/phaser.min';
+import * as SpinePlugin from './plugins/SpinePlugin.min';
 
 import config from './config';
 

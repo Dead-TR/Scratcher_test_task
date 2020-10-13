@@ -12,7 +12,18 @@ const config = {
   dom: {
     createContainer: true
   },
-  scene: GameScene,
+  scene: [GameScene],
+  plugins: {
+    scene: [
+      {
+        type: 'scenePlugin',
+        key: 'SpinePlugin',
+        plugin: window.SpinePlugin,
+        mapping: 'spine',
+        sceneKey: 'spine',
+      }
+    ]
+  },
 };
 
 export default config;

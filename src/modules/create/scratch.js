@@ -1,5 +1,7 @@
 import config from '../../config';
 import {restart} from './Starter';
+import {character} from './CreateCharacter';
+import {setAnimationChanger} from '../update/CharacterAnimationUpdate';
 
 export const coordinator = {}
 export let scratchField;
@@ -14,6 +16,11 @@ export const Scratch = (game) => {
   )
     .setDepth(1);
 
+  const bigBrush = game.add.image(-500, -500, 'bonus_scratch')
+    .setOrigin(0);
+  const mediumBrush = game.add.image(-500, -500, 'card_scratch')
+    .setOrigin(0)
+
   scratchField.destroy = 0;
   scratchField.draw('bonus_scratch', 615, 415);
 
@@ -27,12 +34,12 @@ export const Scratch = (game) => {
   }
 
     game.input.on('pointermove', function (pointer) {
-      if (pointer.isDown){
+      // if (pointer.isDown){ // if, only when mousedown
         if (!restart) {
           scratchField.erase(brush, pointer.x, pointer.y);
-          coordinatorAudit(pointer, coordinator, scratchField, game);
+          coordinatorAudit(pointer, coordinator, scratchField, game, bigBrush, mediumBrush);
         }
-      }
+      // }
     });
 
     game.input.on('pointerdown', function (pointer) {
@@ -43,7 +50,8 @@ export const Scratch = (game) => {
 
 }
 
-function coordinatorAudit(pointer, coordinator, scratchField, game) {
+function coordinatorAudit(pointer, coordinator, scratchField, game, bigBrush, mediumBrush) {
+
   for (const card in coordinator) {
     if (
       pointer.x > coordinator[card].initialX
@@ -69,16 +77,30 @@ function coordinatorAudit(pointer, coordinator, scratchField, game) {
       const horizontalSide = coordinator[card].maxX - coordinator[card].minX;
       const diagonal = Math.sqrt(Math.pow(verticalSide, 2) + Math.pow(horizontalSide, 2))
       if (diagonal > coordinator[card].diagonal * 0.9) {
-        scratchField.erase(
-          game.add.image(
-            -500,
-            -500,
-            `${coordinator[card].type}_scratch`,
-          ).setOrigin(0),
-          coordinator[card].initialX,
-          coordinator[card].initialY,
-          coordinator[card].scratched = true,
-        );
+        if (!coordinator[card].scratched) {
+          if (coordinator[card].type === 'bonus') {
+            setAnimationChanger(2);
+            scratchField.erase(
+              bigBrush,
+              coordinator[card].initialX,
+              coordinator[card].initialY,
+              coordinator[card].scratched = true,
+            );
+          } else {
+            if (coordinator[card].key === coordinator.bonusCard.key) {
+              setAnimationChanger(3);
+            } else {
+              setAnimationChanger(4);
+            }
+
+            scratchField.erase(
+              mediumBrush,
+              coordinator[card].initialX,
+              coordinator[card].initialY,
+              coordinator[card].scratched = true,
+            );
+          }
+        }
       }
     }
   }

@@ -1,7 +1,6 @@
 export const LoadGameElements = (game) => {
   game.load.image('background', 'assets/img/magic_forest_bg.png');
 
-
   game.load.image('bonfire', 'assets/img/magic_forest_bonfire.png');
   game.load.image('bonfire_small', 'assets/img/magic_forest_bonfire_small.png');
 

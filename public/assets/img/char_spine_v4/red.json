@@ -4,7 +4,7 @@
     "spine": "3.6.51",
     "width": 466.48,
     "height": 600.38,
-    "images": "../images/"
+    "images": "../img/"
   },
   "bones": [
     {
@@ -636,7 +636,8 @@
     }
   ],
   "skins": {
-    "default": {
+		"name": "default",
+    "attachments": {
       "_preview_red": {
         "_preview_red": {
           "x": 514,
