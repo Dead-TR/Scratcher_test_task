@@ -10,3 +10,8 @@ Open [local server](http://localhost:3000/)
  ## Screenshot:
 
 ![Phaser Scratch Game](./screenshot.png "Screenshot")
+
+ ## Technologies:
+ - JS
+ - Phaser
+ - Spine
